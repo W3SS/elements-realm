@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -18,10 +19,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-l1-Jw2">
-                                <rect key="frame" x="180" y="422" width="240" height="128"/>
+                                <rect key="frame" x="120" y="422" width="360" height="128"/>
                                 <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="TJy-LC-qiG"/>
                                     <constraint firstAttribute="height" constant="128" id="Zee-W4-i9o"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,6 +45,9 @@
                                                 <state key="normal" title="Create">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="createBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fa7-If-CzX"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdI-BI-a7G">
                                                 <rect key="frame" x="147" y="0.0" width="132" height="43"/>
@@ -57,6 +60,9 @@
                                                 <state key="normal" title="Fetch">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="fetchBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iRs-1P-FJd"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -74,6 +80,9 @@
                                                 <state key="normal" title="Update">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="updateBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sBf-7k-e6Z"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c3X-XI-Pcr">
                                                 <rect key="frame" x="147" y="0.0" width="132" height="43"/>
@@ -86,6 +95,9 @@
                                                 <state key="normal" title="Delete">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="deleteBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o9E-cD-5Cf"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -109,9 +121,14 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YKP-l1-Jw2" secondAttribute="bottom" constant="50" id="Kym-Fx-sPe"/>
                             <constraint firstItem="YKP-l1-Jw2" firstAttribute="top" secondItem="lS8-lX-ZoU" secondAttribute="bottom" constant="74" id="LM0-rd-2ni"/>
                             <constraint firstItem="TYh-rg-FnA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="76" id="LpS-wa-9th"/>
+                            <constraint firstItem="YKP-l1-Jw2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="100" id="Uev-eB-mXu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YKP-l1-Jw2" secondAttribute="trailing" constant="100" id="Xh0-r4-c0o"/>
                             <constraint firstItem="lS8-lX-ZoU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bzP-sq-Plq"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="deleteBtnPressed" destination="c3X-XI-Pcr" id="t9H-Jf-ZLl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
