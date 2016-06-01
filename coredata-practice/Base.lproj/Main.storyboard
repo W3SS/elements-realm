@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DO7-Ce-ySr">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-l1-Jw2">
-                                <rect key="frame" x="120" y="422" width="360" height="128"/>
+                                <rect key="frame" x="60" y="422" width="480" height="128"/>
                                 <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="Zee-W4-i9o"/>
@@ -103,8 +103,8 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My StackView Demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-rg-FnA">
-                                <rect key="frame" x="189" y="96" width="222" height="52"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYh-rg-FnA">
+                                <rect key="frame" x="189" y="140" width="222" height="52"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="ZKs-6z-95E"/>
                                     <constraint firstAttribute="width" constant="222" id="agn-G8-vgw"/>
@@ -121,16 +121,35 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="YKP-l1-Jw2" secondAttribute="bottom" constant="50" id="Kym-Fx-sPe"/>
                             <constraint firstItem="YKP-l1-Jw2" firstAttribute="top" secondItem="lS8-lX-ZoU" secondAttribute="bottom" constant="74" id="LM0-rd-2ni"/>
                             <constraint firstItem="TYh-rg-FnA" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="76" id="LpS-wa-9th"/>
-                            <constraint firstItem="YKP-l1-Jw2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="100" id="Uev-eB-mXu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="YKP-l1-Jw2" secondAttribute="trailing" constant="100" id="Xh0-r4-c0o"/>
+                            <constraint firstItem="YKP-l1-Jw2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="40" id="Uev-eB-mXu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YKP-l1-Jw2" secondAttribute="trailing" constant="40" id="Xh0-r4-c0o"/>
                             <constraint firstItem="lS8-lX-ZoU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bzP-sq-Plq"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="0Nl-VD-zMY"/>
                     <connections>
-                        <outlet property="deleteBtnPressed" destination="c3X-XI-Pcr" id="t9H-Jf-ZLl"/>
+                        <outlet property="logTextView" destination="YKP-l1-Jw2" id="FDO-8d-vKO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="282"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="sXW-zP-3cW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DO7-Ce-ySr" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="B0U-zd-Nzx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="3pk-TH-i6q"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LJL-mK-GHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="282"/>
         </scene>
