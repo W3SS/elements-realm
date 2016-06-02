@@ -13,6 +13,7 @@
 		A0C199201CFE4AA300C86567 /* coredata_practice.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A0C1991E1CFE4AA300C86567 /* coredata_practice.xcdatamodeld */; };
 		A0C199221CFE4AA300C86567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0C199211CFE4AA300C86567 /* Assets.xcassets */; };
 		A0C199251CFE4AA300C86567 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0C199231CFE4AA300C86567 /* LaunchScreen.storyboard */; };
+		A0C1995B1D0025ED00C86567 /* ElementsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0C1995A1D0025ED00C86567 /* ElementsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A0C199211CFE4AA300C86567 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A0C199241CFE4AA300C86567 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0C199261CFE4AA300C86567 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A0C1995A1D0025ED00C86567 /* ElementsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementsTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				A0C199171CFE4AA300C86567 /* AppDelegate.swift */,
+				A0C1995A1D0025ED00C86567 /* ElementsTableViewController.swift */,
 				A0C199191CFE4AA300C86567 /* ViewController.swift */,
 				A0C1991B1CFE4AA300C86567 /* Main.storyboard */,
 				A0C199211CFE4AA300C86567 /* Assets.xcassets */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0C1995B1D0025ED00C86567 /* ElementsTableViewController.swift in Sources */,
 				A0C199201CFE4AA300C86567 /* coredata_practice.xcdatamodeld in Sources */,
 				A0C1991A1CFE4AA300C86567 /* ViewController.swift in Sources */,
 				A0C199181CFE4AA300C86567 /* AppDelegate.swift in Sources */,
@@ -292,6 +296,7 @@
 				A0C1992B1CFE4AA300C86567 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

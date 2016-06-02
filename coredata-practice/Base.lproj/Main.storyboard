@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Menu-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="coredata_practice" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-l1-Jw2">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YKP-l1-Jw2">
                                 <rect key="frame" x="60" y="422" width="480" height="128"/>
                                 <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -28,7 +28,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lS8-lX-ZoU" userLabel="Button Stack">
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lS8-lX-ZoU" userLabel="Button Stack">
                                 <rect key="frame" x="161" y="252" width="279" height="96"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="74P-Qf-mMk">
@@ -126,6 +126,7 @@
                             <constraint firstItem="lS8-lX-ZoU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bzP-sq-Plq"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Menu" id="1oe-sU-0bx"/>
                     <navigationItem key="navigationItem" id="0Nl-VD-zMY"/>
                     <connections>
                         <outlet property="logTextView" destination="YKP-l1-Jw2" id="FDO-8d-vKO"/>
@@ -133,7 +134,36 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="951" y="282"/>
+            <point key="canvasLocation" x="1763" y="282"/>
+        </scene>
+        <!--Elements-->
+        <scene sceneID="smo-6C-bKT">
+            <objects>
+                <tableViewController id="crU-l5-4Yd" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xcj-yW-6p2">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Fgp-WB-Rtl">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fgp-WB-Rtl" id="VYL-KA-vJM">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="crU-l5-4Yd" id="0DG-tA-6Jb"/>
+                            <outlet property="delegate" destination="crU-l5-4Yd" id="95v-H2-A51"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Elements" id="o7E-VZ-A4L"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="axO-bc-caU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1763" y="1071"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sXW-zP-3cW">
@@ -143,15 +173,35 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="B0U-zd-Nzx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="3pk-TH-i6q"/>
+                        <segue destination="XLu-xS-wdg" kind="relationship" relationship="rootViewController" id="3pk-TH-i6q"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LJL-mK-GHG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139" y="282"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Ub1-wH-X1B">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="XLu-xS-wdg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="teY-16-gFC"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="bDy-rF-HME">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="gCZ-iu-qVp"/>
+                        <segue destination="crU-l5-4Yd" kind="relationship" relationship="viewControllers" id="R53-sE-9EW"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1GS-UR-W1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="282"/>
         </scene>
     </scenes>
 </document>
