@@ -9,19 +9,28 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class MenuViewController: UIViewController {
 
     @IBOutlet weak var logTextView: UITextView!
     
-    // MARK: boilerplate
+    var appDelegate: AppDelegate!
+    var managedContext: NSManagedObjectContext!
+    var entity: NSEntityDescription!
+    
+    // MARK: UIViewController boilerplate
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        // MARK: CoreData setup
+        // 1 Get AppDelegate object
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        // 2 Get ManagedObjectContext from appDelegate
+        managedContext = appDelegate.managedObjectContext
+        
+        // 3 Create Entity Description with your entity name
+        entity = NSEntityDescription.entityForName("Element", inManagedObjectContext: managedContext)
+        
     }
     
     // MARK: ViewController Buttons
@@ -42,16 +51,7 @@ class ViewController: UIViewController {
     
     func createElement(name: String, atomicNumber: Double) {
         
-        var elements = [NSManagedObject]()
-        
-        // 1 Get AppDelegate Object
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // 2 Get ManagedContextObject using the AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        
-        // 3 Create Entity Description with your entity name
-        let entity = NSEntityDescription.entityForName("Element", inManagedObjectContext: managedContext)
+        //var elements = [NSManagedObject]()
         
         // 4 Create Managed Object with help of entity and managedContext
         let elementObj = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
@@ -63,9 +63,9 @@ class ViewController: UIViewController {
         // 6 Handle the exception
         do {
             try managedContext.save()
-            elements.append(elementObj)
+            ElementsData.instance.append(elementObj)
             
-            logTextView.text = "Element added to local Database."
+            logTextView.text = "\(name) added to local Database."
         } catch let error as NSError {
             print("Could not save \(error), \(error.userInfo)")
         }
@@ -73,20 +73,11 @@ class ViewController: UIViewController {
     
     
     func fetchElements() {
-        // 1 Initialize fetch request
+        // 4 Initialize fetch request
         let fetchRequest = NSFetchRequest()
         
-        // 2 Get AppDelegate object
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // 3 Get ManagedObjectContext with the help of AppDelegate
-        let managedContext = appDelegate.managedObjectContext
-        
-        // 4 Create entity description
-        let entityDescription = NSEntityDescription.entityForName("Element", inManagedObjectContext: managedContext)
-        
         // 5 Configure fetch request
-        fetchRequest.entity = entityDescription
+        fetchRequest.entity = entity
         
         do {
             let result = try managedContext.executeFetchRequest(fetchRequest)
@@ -98,7 +89,7 @@ class ViewController: UIViewController {
                     logTextView.text = "Element record is added to local Database. \n" + (output as String)
                 }
             } else {
-                logTextView.text = "No element records found int he local Database"
+                logTextView.text = "No element records found in the local Database"
             }
         } catch {
             let fetchError = error as NSError
