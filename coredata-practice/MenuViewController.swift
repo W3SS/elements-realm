@@ -21,22 +21,11 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // MARK: CoreData setup
-        // 1 Get AppDelegate object
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // 2 Get ManagedObjectContext from appDelegate
-        managedContext = appDelegate.managedObjectContext
-        
-        // 3 Create Entity Description with your entity name
-        entity = NSEntityDescription.entityForName("Element", inManagedObjectContext: managedContext)
-        
     }
     
     // MARK: ViewController Buttons
 
     @IBAction func createBtnPressed(sender: AnyObject) {
-        
         createElement("Hydrogen", atomicNumber: 1.0)
     }
     @IBAction func fetchBtnPressed(sender: AnyObject) {
@@ -46,12 +35,18 @@ class MenuViewController: UIViewController {
     }
     @IBAction func deleteBtnPressed(sender: AnyObject) {
     }
+    @IBAction func clearLogBtnPressed(sender: AnyObject) {
+        clearLog()
+    }
     
     // MARK: CoreData Actions
     
     func createElement(name: String, atomicNumber: Double) {
         
-        //var elements = [NSManagedObject]()
+        clearLog()
+        
+        // 1, 2, 3 Start Core Data
+        startCoreData()
         
         // 4 Create Managed Object with help of entity and managedContext
         let elementObj = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
@@ -73,28 +68,43 @@ class MenuViewController: UIViewController {
     
     
     func fetchElements() {
-        // 4 Initialize fetch request
-        let fetchRequest = NSFetchRequest()
         
-        // 5 Configure fetch request
-        fetchRequest.entity = entity
+        let data = ElementsData.instance.elements
         
-        do {
-            let result = try managedContext.executeFetchRequest(fetchRequest)
-            if (result.count > 0) {
-                let elementObj = result[0] as! NSManagedObject
-                if let name = elementObj.valueForKey("name"), atomicNumber = elementObj.valueForKey("atomicNumber"){
-                    let output: NSString = "\(name) - Atomic Number: \(atomicNumber)"
+        clearLog()
+        
+        if data.count != 0 {
+            
+            for elementObj in data {
+                if let name = elementObj.valueForKey("name"), atomicNumber = elementObj.valueForKey("atomicNumber") as! NSNumber! {
+                    
+                    let output: NSString = "\(atomicNumber) - \(name)"
                     print(output)
-                    logTextView.text = "Element record is added to local Database. \n" + (output as String)
+                    logTextView.text = logTextView.text.stringByAppendingString(output as String)  + "\n"
                 }
-            } else {
-                logTextView.text = "No element records found in the local Database"
             }
-        } catch {
-            let fetchError = error as NSError
-            print("Error", fetchError)
+            
+        } else {
+            logTextView.text = "No element records found in the local Database"
         }
+    }
+    
+    // MARK: Helper functions
+    func startCoreData() {
+        
+        // MARK: CoreData setup
+        // 1 Get AppDelegate object
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        
+        // 2 Get ManagedObjectContext from appDelegate
+        managedContext = appDelegate.managedObjectContext
+        
+        // 3 Create Entity Description with your entity name
+        entity = NSEntityDescription.entityForName("Element", inManagedObjectContext: managedContext)
+    }
+    
+    func clearLog() {
+        logTextView.text = ""
     }
 }
 

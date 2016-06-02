@@ -11,30 +11,37 @@ import UIKit
 class ElementsTableViewController: UITableViewController {
 
     
+    var data = ElementsData.instance.elements
+    
     // MARK: UIViewController boilerplate
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        tableView.reloadData()
+    }
 
-    
-    
     
     // MARK: UITableView DataSource
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return data.count
     }
-
-        override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ElementCell", forIndexPath: indexPath)
-
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ElementCell", forIndexPath: indexPath) as! ElementCell
+        
         // Configure the cell...
-
+        let element = data[indexPath.row]
+        
+        print(element.valueForKey("name"))
+        
+        cell.configureCell(element)
+        
         return cell
     }
 
