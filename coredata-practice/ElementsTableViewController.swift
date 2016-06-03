@@ -7,21 +7,27 @@
 //
 
 import UIKit
+import CoreData
 
 class ElementsTableViewController: UITableViewController {
 
     
-    var data = ElementsData.instance.elements
+    var data: [NSManagedObject] {
+        get {
+            return ElementsData.instance.elements
+        }
+    }
     
     // MARK: UIViewController boilerplate
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Initial load
+        ElementsData.instance.loadElements()
+        
+        // Call the onElementsLoaded functions when the elementsLoaded notification is made
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ElementsTableViewController.onElementsLoaded(_:)), name: "elementsLoaded", object: nil)
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        tableView.reloadData()
-    }
-
     
     // MARK: UITableView DataSource
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -38,14 +44,17 @@ class ElementsTableViewController: UITableViewController {
         // Configure the cell...
         let element = data[indexPath.row]
         
-        print(element.valueForKey("name"))
-        
         cell.configureCell(element)
         
         return cell
     }
 
     
+    
+    // MARK: Helper functions
+    func onElementsLoaded(notif: NSNotification) {
+        tableView.reloadData()
+    }
     
     
     /*

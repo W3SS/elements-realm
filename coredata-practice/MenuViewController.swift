@@ -17,16 +17,21 @@ class MenuViewController: UIViewController {
     var managedContext: NSManagedObjectContext!
     var entity: NSEntityDescription!
     
+    
+    
     // MARK: UIViewController boilerplate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
     }
+    
+    
     
     // MARK: ViewController Buttons
 
     @IBAction func createBtnPressed(sender: AnyObject) {
-        createElement("Hydrogen", atomicNumber: 1.0)
+        alertPopup()
     }
     @IBAction func fetchBtnPressed(sender: AnyObject) {
         fetchElements()
@@ -41,29 +46,16 @@ class MenuViewController: UIViewController {
     
     // MARK: CoreData Actions
     
-    func createElement(name: String, atomicNumber: Double) {
+    func createElement(name: String, atomicNumber: Int16) {
         
         clearLog()
         
-        // 1, 2, 3 Start Core Data
-        startCoreData()
-        
-        // 4 Create Managed Object with help of entity and managedContext
-        let elementObj = NSManagedObject(entity: entity!, insertIntoManagedObjectContext: managedContext)
-        
-        // 5 Set values for represented attributes
-        elementObj.setValue("Hydrogen", forKey: "name")
-        elementObj.setValue(1.0, forKey: "atomicNumber")
-        
-        // 6 Handle the exception
-        do {
-            try managedContext.save()
-            ElementsData.instance.append(elementObj)
-            
+        if ElementsData.instance.addElement(name, atomicNumber: atomicNumber) == true {
             logTextView.text = "\(name) added to local Database."
-        } catch let error as NSError {
-            print("Could not save \(error), \(error.userInfo)")
+        } else {
+            logTextView.text = "\(name) could not be added to Database."
         }
+        
     }
     
     
@@ -79,7 +71,6 @@ class MenuViewController: UIViewController {
                 if let name = elementObj.valueForKey("name"), atomicNumber = elementObj.valueForKey("atomicNumber") as! NSNumber! {
                     
                     let output: NSString = "\(atomicNumber) - \(name)"
-                    print(output)
                     logTextView.text = logTextView.text.stringByAppendingString(output as String)  + "\n"
                 }
             }
@@ -87,24 +78,60 @@ class MenuViewController: UIViewController {
         } else {
             logTextView.text = "No element records found in the local Database"
         }
+        
+        ElementsData.instance.loadElements()
     }
     
     // MARK: Helper functions
-    func startCoreData() {
-        
-        // MARK: CoreData setup
-        // 1 Get AppDelegate object
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        // 2 Get ManagedObjectContext from appDelegate
-        managedContext = appDelegate.managedObjectContext
-        
-        // 3 Create Entity Description with your entity name
-        entity = NSEntityDescription.entityForName("Element", inManagedObjectContext: managedContext)
-    }
-    
     func clearLog() {
         logTextView.text = ""
+    }
+    
+    func alertPopup() {
+        // MARK: Create the alert window and set data
+        
+        let alert = UIAlertController(title: "New Element", message: "Add a new element", preferredStyle: .Alert)
+        
+        let saveAction = UIAlertAction(title: "Add", style: .Default, handler: {
+            
+            // Handler
+            (action: UIAlertAction) -> Void in
+            let nameTextField = alert.textFields![0]
+            let atomicNumberTextField = alert.textFields![1]
+            
+            
+            if let nameText = nameTextField.text, atomicNumberText = atomicNumberTextField.text {
+                
+                if !nameText.isEmpty && !atomicNumberText.isEmpty {
+                    let atomicNum = Int16(atomicNumberText)
+                    self.createElement(nameText, atomicNumber: atomicNum!)
+                }
+            }
+            
+            // reload data
+        })
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Default, handler: {
+            
+            // Handler
+            (action: UIAlertAction) -> Void in
+            
+        })
+        
+        alert.addTextFieldWithConfigurationHandler {
+            (textField: UITextField) -> Void in
+            textField.placeholder = "Name"
+        }
+        
+        alert.addTextFieldWithConfigurationHandler {
+            (textField: UITextField) -> Void in
+            textField.placeholder = "Atomic Number"
+        }
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
 

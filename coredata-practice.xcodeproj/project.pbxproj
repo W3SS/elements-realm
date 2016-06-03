@@ -78,8 +78,8 @@
 		A0C199651D002E8800C86567 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A0C1995A1D0025ED00C86567 /* ElementsTableViewController.swift */,
 				A0C199191CFE4AA300C86567 /* MenuViewController.swift */,
+				A0C1995A1D0025ED00C86567 /* ElementsTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
