@@ -7,16 +7,18 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 class ElementsTableViewController: UITableViewController {
 
     
-    var data: [NSManagedObject] {
+    var realm: Realm {
         get {
             return ElementsData.instance.elements
         }
     }
+    
+    
     
     // MARK: UIViewController boilerplate
     override func viewDidLoad() {
@@ -35,14 +37,14 @@ class ElementsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return realm.objects(Element).count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ElementCell", forIndexPath: indexPath) as! ElementCell
         
         // Configure the cell...
-        let element = data[indexPath.row]
+        let element = realm.objects(Element)[indexPath.row]
         
         cell.configureCell(element)
         

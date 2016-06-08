@@ -7,26 +7,16 @@
 //
 
 import UIKit
-import CoreData
 
 class MenuViewController: UIViewController {
 
     @IBOutlet weak var logTextView: UITextView!
-    
-    var appDelegate: AppDelegate!
-    var managedContext: NSManagedObjectContext!
-    var entity: NSEntityDescription!
-    
-    
-    
+
     // MARK: UIViewController boilerplate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
-    
-    
     
     // MARK: ViewController Buttons
 
@@ -44,17 +34,14 @@ class MenuViewController: UIViewController {
         clearLog()
     }
     
-    // MARK: CoreData Actions
+    // MARK: Realm Actions
     
-    func createElement(name: String, atomicNumber: Int16) {
+    func createElement(name: String, atomicNumber: Int) {
         
         clearLog()
         
-        if ElementsData.instance.addElement(name, atomicNumber: atomicNumber) == true {
-            logTextView.text = "\(name) added to local Database."
-        } else {
-            logTextView.text = "\(name) could not be added to Database."
-        }
+        ElementsData.instance.addElement(name, atomicNumber: atomicNumber)
+        logTextView.text = "\(name) added to local Database."
         
     }
     
@@ -65,14 +52,12 @@ class MenuViewController: UIViewController {
         
         clearLog()
         
-        if data.count != 0 {
+        if data.objects(Element).count != 0 {
             
-            for elementObj in data {
-                if let name = elementObj.valueForKey("name"), atomicNumber = elementObj.valueForKey("atomicNumber") as! NSNumber! {
-                    
-                    let output: NSString = "\(atomicNumber) - \(name)"
+            for elementObj in data.objects(Element) {
+                let name = elementObj.name, atomicNumber = elementObj.atomicNumber
+                let output = "\(atomicNumber) - \(name)"
                     logTextView.text = logTextView.text.stringByAppendingString(output as String)  + "\n"
-                }
             }
             
         } else {
@@ -103,7 +88,7 @@ class MenuViewController: UIViewController {
             if let nameText = nameTextField.text, atomicNumberText = atomicNumberTextField.text {
                 
                 if !nameText.isEmpty && !atomicNumberText.isEmpty {
-                    let atomicNum = Int16(atomicNumberText)
+                    let atomicNum = Int(atomicNumberText)
                     self.createElement(nameText, atomicNumber: atomicNum!)
                 }
             }

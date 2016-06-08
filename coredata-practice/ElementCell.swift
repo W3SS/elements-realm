@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 
 class ElementCell: UITableViewCell {
     
@@ -26,9 +25,9 @@ class ElementCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configureCell(element: NSManagedObject) {
-        self.nameLbl.text = element.valueForKey("name") as? String
-        self.atomicNumberLbl.text = element.valueForKey("atomicNumber")?.stringValue
+    func configureCell(element: Element) {
+        self.nameLbl.text = element.name
+        self.atomicNumberLbl.text = String(element.atomicNumber)
     }
 
 }

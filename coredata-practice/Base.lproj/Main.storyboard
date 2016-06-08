@@ -147,26 +147,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1763" y="388"/>
+            <point key="canvasLocation" x="1625" y="382"/>
         </scene>
         <!--Elements-->
         <scene sceneID="smo-6C-bKT">
             <objects>
                 <tableViewController id="crU-l5-4Yd" customClass="ElementsTableViewController" customModule="coredata_practice" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xcj-yW-6p2">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="97" sectionHeaderHeight="28" sectionFooterHeight="28" id="Xcj-yW-6p2">
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ElementCell" id="Fgp-WB-Rtl" customClass="ElementCell" customModule="coredata_practice" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ElementCell" rowHeight="97" id="Fgp-WB-Rtl" customClass="ElementCell" customModule="coredata_practice" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="600" height="97"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fgp-WB-Rtl" id="VYL-KA-vJM">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="96.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="Xb9-zW-mWK">
-                                            <rect key="frame" x="28" y="4" width="235" height="35"/>
+                                            <rect key="frame" x="28" y="31" width="235" height="35"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEX-Zf-155">
                                                     <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
@@ -195,6 +195,10 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XVm-lG-LPP">
+                                            <rect key="frame" x="526" y="11" width="66" height="77"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Xb9-zW-mWK" firstAttribute="centerY" secondItem="VYL-KA-vJM" secondAttribute="centerY" id="6qd-SY-ehw"/>
@@ -216,7 +220,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axO-bc-caU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1763" y="1071"/>
+            <point key="canvasLocation" x="1625" y="1075"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sXW-zP-3cW">
@@ -254,7 +258,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1GS-UR-W1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1049" y="698"/>
+            <point key="canvasLocation" x="891" y="782"/>
         </scene>
     </scenes>
     <resources>
