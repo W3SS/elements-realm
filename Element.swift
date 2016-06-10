@@ -14,9 +14,10 @@ class Element: Object {
     dynamic var atomicNumber = 0
     dynamic var atomicMass = 0.0
     dynamic var category = ""
+    dynamic var chemicalSymbol = ""
     
     override var description: String {
-        return "\(name). Number: \(atomicNumber). Atomic Mass: \(atomicMass). Category: \(category)"
+        return "\(name) (\(chemicalSymbol)). Number: \(atomicNumber). Atomic Mass: \(atomicMass). Category: \(category)"
     }
     
     func category(category: Category) {

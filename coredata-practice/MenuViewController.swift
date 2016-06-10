@@ -36,11 +36,11 @@ class MenuViewController: UIViewController {
     
     // MARK: Realm Actions
     
-    func createElement(name: String, atomicNumber: Int) {
+    func createElement(name: String, atomicNumber: Int, chemicalSymbol: String) {
         
         clearLog()
         
-        ElementsData.instance.addElement(name, atomicNumber: atomicNumber)
+        ElementsData.instance.addElement(name, atomicNumber: atomicNumber, chemicalSymbol: chemicalSymbol)
         logTextView.text = "\(name) added to local Database."
         
     }
@@ -83,13 +83,14 @@ class MenuViewController: UIViewController {
             (action: UIAlertAction) -> Void in
             let nameTextField = alert.textFields![0]
             let atomicNumberTextField = alert.textFields![1]
+            let chemicalSymbolTextField = alert.textFields![2]
             
             
-            if let nameText = nameTextField.text, atomicNumberText = atomicNumberTextField.text {
+            if let nameText = nameTextField.text, atomicNumberText = atomicNumberTextField.text, chemicalSymbolText = chemicalSymbolTextField.text {
                 
-                if !nameText.isEmpty && !atomicNumberText.isEmpty {
+                if !nameText.isEmpty && !atomicNumberText.isEmpty && !chemicalSymbolText.isEmpty {
                     let atomicNum = Int(atomicNumberText)
-                    self.createElement(nameText, atomicNumber: atomicNum!)
+                    self.createElement(nameText, atomicNumber: atomicNum!, chemicalSymbol: chemicalSymbolText)
                 }
             }
             
@@ -111,6 +112,11 @@ class MenuViewController: UIViewController {
         alert.addTextFieldWithConfigurationHandler {
             (textField: UITextField) -> Void in
             textField.placeholder = "Atomic Number"
+        }
+        
+        alert.addTextFieldWithConfigurationHandler {
+            (textField: UITextField) -> Void in
+            textField.placeholder = "Chemical Symbol"
         }
         
         alert.addAction(saveAction)

@@ -8,15 +8,26 @@
 
 import UIKit
 
-class ElementCell: UITableViewCell {
+class ElementTableViewCell: UITableViewCell {
     
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var atomicNumberLbl: UILabel!
+    @IBOutlet weak var chemicalSymbolLbl: UILabel!
+    @IBOutlet weak var colorBgView: UIView!
+    
+    var element: Element!
     
     // MARK: UITableViewCell boilerplate
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        colorBgView.layer.borderColor = UIColor.blackColor().CGColor
+        colorBgView.layer.borderWidth = 1.0
+        
+        colorBgView.layer.cornerRadius = 5.0
+        colorBgView.clipsToBounds = true
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -26,8 +37,12 @@ class ElementCell: UITableViewCell {
     }
     
     func configureCell(element: Element) {
-        self.nameLbl.text = element.name
-        self.atomicNumberLbl.text = String(element.atomicNumber)
+        
+        self.element = element
+        
+        nameLbl.text = self.element.name.capitalizedString
+        atomicNumberLbl.text = "Atomic Number: \(self.element.atomicNumber)"
+        chemicalSymbolLbl.text = self.element.chemicalSymbol
     }
 
 }

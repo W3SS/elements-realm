@@ -13,8 +13,9 @@ import RealmSwift
 class ElementsData {
     
     static let instance = ElementsData()
+    private var _elementRealm: Realm
     
-    let _elementRealm = try! Realm()
+    let defaultPath = Realm.Configuration.defaultConfiguration.fileURL!
     
     
     var elements: Realm {
@@ -22,16 +23,28 @@ class ElementsData {
     }
     
     init() {
+        
+        var config = Realm.Configuration.defaultConfiguration
+        config.schemaVersion += 1
+        
+        _elementRealm = try! Realm(configuration: config)
+        
+//        try! _elementRealm.write {
+//            _elementRealm.deleteAll()
+//        }
+//        
+//        addElement("Hydrogen", atomicNumber: 1, chemicalSymbol: "H")
+        
         loadElements()
         let dir = _elementRealm.configuration.fileURL!
         print(dir)
     }
     
     
-    func addElement(name: String?, atomicNumber: Int?) {
+    func addElement(name: String?, atomicNumber: Int?, chemicalSymbol: String?) {
         
         try! _elementRealm.write {
-            _elementRealm.add(Element(value: ["name" : name!, "atomicNumber" : atomicNumber!]))
+            _elementRealm.add(Element(value: ["name" : name!, "atomicNumber" : atomicNumber!, "chemicalSymbol" : chemicalSymbol!]))
         }
     }
     
