@@ -18,6 +18,9 @@ class MenuViewController: UIViewController {
         
     }
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
     // MARK: ViewController Buttons
 
     @IBAction func createBtnPressed(sender: AnyObject) {
@@ -25,10 +28,6 @@ class MenuViewController: UIViewController {
     }
     @IBAction func fetchBtnPressed(sender: AnyObject) {
         fetchElements()
-    }
-    @IBAction func updateBtnPressed(sender: AnyObject) {
-    }
-    @IBAction func deleteBtnPressed(sender: AnyObject) {
     }
     @IBAction func clearLogBtnPressed(sender: AnyObject) {
         clearLog()
@@ -42,6 +41,8 @@ class MenuViewController: UIViewController {
         
         ElementsData.instance.addElement(name, atomicNumber: atomicNumber, chemicalSymbol: chemicalSymbol)
         logTextView.text = "\(name) added to local Database."
+        
+        ElementsData.instance.loadElements()
         
     }
     

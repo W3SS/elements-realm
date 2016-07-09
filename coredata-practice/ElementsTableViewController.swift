@@ -24,6 +24,10 @@ class ElementsTableViewController: UIViewController, UITableViewDelegate, UITabl
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ElementsTableViewController.onElementsLoaded(_:)), name: "elementsLoaded", object: nil)
     }
 
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
